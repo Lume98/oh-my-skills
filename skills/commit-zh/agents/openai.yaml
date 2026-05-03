@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Commit Zh"
+  short_description: "以中文编写提交信息并安全完成 git commit"
+  default_prompt: "Use $commit-zh to generate a Chinese commit message for staged changes and run git commit."
