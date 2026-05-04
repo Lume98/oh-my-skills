@@ -1,15 +1,13 @@
 {
-  "name": "oh-my-skills-docs",
+  "name": "oh-my-skills",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
+    "docs:dev": "pnpm --filter docs dev",
+    "docs:build": "pnpm --filter docs build",
+    "docs:start": "pnpm --filter docs start",
+    "docs:types:check": "pnpm --filter docs types:check",
     "skills:sync": "node scripts/sync-skills.mjs"
-  },
-  "devDependencies": {
-    "vitepress": "^1.6.3",
-    "vue": "^3.5.13"
   }
 }

@@ -22,13 +22,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-      - run: npm ci
-      - run: npm run skills:sync
-      - run: npm run docs:build
+          cache: pnpm
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run skills:sync
+      - run: pnpm run docs:build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/.vitepress/dist
+          path: docs/out
 
   deploy:
     needs: build

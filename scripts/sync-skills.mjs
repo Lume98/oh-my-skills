@@ -3,7 +3,7 @@ import { join, resolve } from 'node:path'
 
 const ROOT = resolve(import.meta.dirname, '..')
 const SKILLS_DIR = join(ROOT, 'skills')
-const DOCS_SKILLS_DIR = join(ROOT, 'docs', 'skills')
+const DOCS_SKILLS_DIR = join(ROOT, 'docs', 'content', 'docs', 'skills')
 
 async function readFrontmatter(content) {
   const match = content.match(/^---\n([\s\S]*?)\n---/)
@@ -32,7 +32,7 @@ async function syncSkills() {
       const fm = await readFrontmatter(content)
       if (!fm.name) continue
 
-      // Copy skill doc to docs/skills/<name>.md
+      // Copy skill doc to docs/content/docs/skills/<name>.mdx
       const body = content.replace(/^---[\s\S]*?---\n*/, '')
       const docContent = `---
 title: ${fm.name}
@@ -46,18 +46,14 @@ ${body}
 `
 
       await mkdir(DOCS_SKILLS_DIR, { recursive: true })
-      await writeFile(join(DOCS_SKILLS_DIR, `${fm.name}.md`), docContent)
+      await writeFile(join(DOCS_SKILLS_DIR, `${fm.name}.mdx`), docContent)
       skills.push({ name: fm.name, description: fm.description || '' })
     } catch {
       // no SKILL.md, skip
     }
   }
 
-  // Write skills metadata for config to consume
-  const meta = JSON.stringify(skills, null, 2)
-  await writeFile(join(ROOT, 'docs', '.vitepress', 'skills.json'), meta)
-
-  // Generate skills list page
+  // Generate skills list page + fumadocs meta
   const listItems = skills.map(s => `- [${s.name}](./${s.name}) — ${s.description}`).join('\n')
   const listPage = `# Skills
 
@@ -67,7 +63,13 @@ ${body}
 
 ${listItems}
 `
-  await writeFile(join(DOCS_SKILLS_DIR, 'index.md'), listPage)
+  await writeFile(join(DOCS_SKILLS_DIR, 'index.mdx'), listPage)
+
+  const skillsMeta = {
+    title: 'Skills',
+    pages: ['index', ...skills.map(s => s.name)],
+  }
+  await writeFile(join(DOCS_SKILLS_DIR, 'meta.json'), JSON.stringify(skillsMeta, null, 2))
 
   console.log(`Synced ${skills.length} skills: ${skills.map(s => s.name).join(', ')}`)
 }
