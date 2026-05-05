@@ -73,16 +73,16 @@ export default function HomePage() {
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
-                href="/docs/skills"
+                href="/skills/skills"
                 className="rounded-full bg-[var(--claude-text)] px-6 py-3 text-sm font-semibold text-[var(--claude-bg)] transition hover:opacity-90"
               >
                 浏览 Skills
               </Link>
               <Link
-                href="/docs"
+                href="/skills"
                 className="rounded-full border border-[var(--claude-border-strong)] px-6 py-3 text-sm font-semibold text-[var(--claude-text)] transition hover:bg-[var(--claude-panel)]"
               >
-                查看文档入口
+                查看 Skills 入口
               </Link>
             </div>
           </div>
@@ -133,7 +133,7 @@ export default function HomePage() {
             <h2 className="mt-3 text-3xl md:text-4xl">先看几个已经具备执行边界的技能模块。</h2>
           </div>
           <Link
-            href="/docs/skills"
+            href="/skills/skills"
             className="text-sm font-semibold text-[var(--claude-accent)] hover:opacity-80"
           >
             查看全部技能
@@ -149,7 +149,7 @@ export default function HomePage() {
               <p className="text-xs uppercase tracking-[0.18em] text-[var(--claude-text-muted)]">{skill.path}</p>
               <h3 className="mt-3 text-2xl">{skill.title}</h3>
               <p className="mt-4 text-sm leading-7 text-[var(--claude-text-muted)]">{skill.description}</p>
-              <p className="mt-6 text-sm font-semibold text-[var(--claude-accent)]">进入文档</p>
+              <p className="mt-6 text-sm font-semibold text-[var(--claude-accent)]">进入 Skill</p>
             </Link>
           ))}
         </div>

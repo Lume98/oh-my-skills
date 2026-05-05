@@ -1,7 +1,7 @@
 export const appName = 'Oh My Skills';
-export const docsRoute = '/docs';
-export const docsImageRoute = '/og/docs';
-export const docsContentRoute = '/llms.mdx/docs';
+export const docsRoute = '/skills';
+export const docsImageRoute = '/og/skills';
+export const docsContentRoute = '/llms.mdx/skills';
 
 // fill this with your actual GitHub info, for example:
 export const gitConfig = {
