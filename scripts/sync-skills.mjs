@@ -3,7 +3,7 @@ import { join, resolve } from 'node:path'
 
 const ROOT = resolve(import.meta.dirname, '..')
 const SKILLS_DIR = join(ROOT, 'skills')
-const DOCS_SKILLS_DIR = join(ROOT, 'docs', 'content', 'docs', 'skills')
+const DOCS_SKILLS_DIR = join(ROOT, 'content', 'docs', 'skills')
 
 async function readFrontmatter(content) {
   const match = content.match(/^---\n([\s\S]*?)\n---/)
