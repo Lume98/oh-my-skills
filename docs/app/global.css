@@ -2,11 +2,326 @@
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 
+:root {
+  --claude-bg: #f7f3eb;
+  --claude-bg-elevated: rgba(255, 252, 245, 0.92);
+  --claude-panel: #fffdf8;
+  --claude-panel-strong: #f2eadf;
+  --claude-border: rgba(101, 78, 54, 0.18);
+  --claude-border-strong: rgba(101, 78, 54, 0.3);
+  --claude-text: #2f2419;
+  --claude-text-muted: #6b5a49;
+  --claude-accent: #c96442;
+  --claude-accent-soft: rgba(201, 100, 66, 0.12);
+  --claude-shadow: 0 18px 40px rgba(73, 50, 30, 0.08);
+  --font-body: var(--font-claude-sans);
+  --font-display: var(--font-claude-serif);
+  --color-fd-background: #f7f3eb;
+  --color-fd-foreground: #2f2419;
+  --color-fd-muted: #f1eadf;
+  --color-fd-muted-foreground: #6b5a49;
+  --color-fd-popover: #fffaf2;
+  --color-fd-popover-foreground: #2f2419;
+  --color-fd-card: #fffdf8;
+  --color-fd-card-foreground: #2f2419;
+  --color-fd-border: rgba(101, 78, 54, 0.18);
+  --color-fd-primary: #2f2419;
+  --color-fd-primary-foreground: #f7f3eb;
+  --color-fd-secondary: #ece3d5;
+  --color-fd-secondary-foreground: #433224;
+  --color-fd-accent: rgba(201, 100, 66, 0.14);
+  --color-fd-accent-foreground: #9f4b2e;
+  --color-fd-ring: rgba(201, 100, 66, 0.42);
+  --color-fd-overlay: rgba(47, 36, 25, 0.2);
+  --color-fd-info: #7a8b9a;
+  --color-fd-warning: #b7791f;
+  --color-fd-error: #b2543f;
+  --color-fd-success: #6c8b6b;
+  --color-fd-idea: #c96442;
+}
+
+html.dark {
+  --claude-bg: #1c1713;
+  --claude-bg-elevated: rgba(35, 29, 24, 0.9);
+  --claude-panel: #2a221d;
+  --claude-panel-strong: #342a24;
+  --claude-border: rgba(230, 212, 187, 0.22);
+  --claude-border-strong: rgba(230, 212, 187, 0.34);
+  --claude-text: #f7edde;
+  --claude-text-muted: #d4c1ab;
+  --claude-accent: #d08961;
+  --claude-accent-soft: rgba(208, 137, 97, 0.22);
+  --claude-shadow: 0 20px 44px rgba(0, 0, 0, 0.32);
+  --color-fd-background: #1c1713;
+  --color-fd-foreground: #f7edde;
+  --color-fd-muted: #312823;
+  --color-fd-muted-foreground: #d4c1ab;
+  --color-fd-popover: #28211c;
+  --color-fd-popover-foreground: #f7edde;
+  --color-fd-card: #2a221d;
+  --color-fd-card-foreground: #f7edde;
+  --color-fd-border: rgba(230, 212, 187, 0.22);
+  --color-fd-primary: #f7edde;
+  --color-fd-primary-foreground: #1c1713;
+  --color-fd-secondary: #3a2f29;
+  --color-fd-secondary-foreground: #f1e3d1;
+  --color-fd-accent: rgba(208, 137, 97, 0.28);
+  --color-fd-accent-foreground: #fff3e4;
+  --color-fd-ring: rgba(255, 186, 145, 0.58);
+  --color-fd-overlay: rgba(0, 0, 0, 0.42);
+  --color-fd-info: #a8bfd1;
+  --color-fd-warning: #e2b56f;
+  --color-fd-error: #e19783;
+  --color-fd-success: #9ab997;
+  --color-fd-idea: #d08961;
+}
+
 html {
   scrollbar-gutter: stable;
+  background:
+    radial-gradient(circle at top, rgba(214, 158, 116, 0.14), transparent 32%),
+    linear-gradient(180deg, #fbf8f2 0%, var(--claude-bg) 55%, #f1eadf 100%);
+  color: var(--claude-text);
+}
+
+html.dark {
+  background:
+    radial-gradient(circle at top, rgba(208, 137, 97, 0.16), transparent 34%),
+    linear-gradient(180deg, #16110e 0%, var(--claude-bg) 58%, #120f0c 100%);
+}
+
+body {
+  background: transparent;
+  color: var(--claude-text);
+  font-family: var(--font-body), sans-serif;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.28)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a88762' fill-opacity='0.05'%3E%3Ccircle cx='12' cy='12' r='1.2'/%3E%3Ccircle cx='96' cy='54' r='1'/%3E%3Ccircle cx='136' cy='128' r='1.1'/%3E%3Ccircle cx='58' cy='120' r='0.9'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.7;
+  z-index: -1;
+}
+
+html.dark body::before {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d8c2a4' fill-opacity='0.06'%3E%3Ccircle cx='12' cy='12' r='1.2'/%3E%3Ccircle cx='96' cy='54' r='1'/%3E%3Ccircle cx='136' cy='128' r='1.1'/%3E%3Ccircle cx='58' cy='120' r='0.9'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.16;
 }
 
 html > body[data-scroll-locked] {
   margin-right: 0px !important;
   --removed-body-scroll-bar-size: 0px !important;
+}
+
+a {
+  transition: color 160ms ease, opacity 160ms ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+[data-page] h1,
+[data-page] h2,
+[data-page] h3 {
+  font-family: var(--font-display), serif;
+  color: var(--claude-text);
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: rgba(201, 100, 66, 0.2);
+}
+
+html.dark ::selection {
+  background: rgba(255, 186, 145, 0.24);
+}
+
+[data-search-full] {
+  border-radius: 24px;
+  border: 1px solid var(--claude-border);
+  background: rgba(251, 248, 242, 0.9);
+  box-shadow: var(--claude-shadow);
+  backdrop-filter: blur(18px);
+}
+
+[data-search-full] input {
+  font-family: var(--font-body), sans-serif;
+}
+
+[data-search-full] [data-search-list] {
+  border-top: 1px solid var(--claude-border);
+}
+
+[data-search-full] [data-search-item][data-active='true'] {
+  background: var(--claude-accent-soft);
+}
+
+html.dark [data-search-full] {
+  background: #28211c;
+}
+
+[data-search-trigger],
+button[aria-label='Search'] {
+  border-radius: 999px;
+  border: 1px solid var(--claude-border) !important;
+  background: rgba(255, 251, 244, 0.86) !important;
+  box-shadow: 0 8px 20px rgba(73, 50, 30, 0.05);
+}
+
+[data-search-trigger]:hover,
+button[aria-label='Search']:hover {
+  background: rgba(255, 248, 239, 0.98) !important;
+}
+
+html.dark [data-search-trigger],
+html.dark button[aria-label='Search'] {
+  background: #3a2f29 !important;
+  color: var(--claude-text-muted);
+}
+
+html.dark [data-search-trigger]:hover,
+html.dark button[aria-label='Search']:hover {
+  background: #4a3b33 !important;
+  color: var(--claude-text);
+}
+
+header,
+aside,
+main article,
+nav {
+  --tw-border-opacity: 1;
+}
+
+header {
+  background: rgba(247, 243, 235, 0.78);
+  backdrop-filter: blur(14px);
+}
+
+html.dark header {
+  background: #1c1713d9;
+}
+
+header,
+aside,
+[data-page],
+[data-docs-body],
+[data-toc] {
+  border-color: var(--claude-border) !important;
+}
+
+aside,
+[data-toc],
+[data-page] {
+  background: rgba(255, 252, 245, 0.5);
+}
+
+html.dark aside,
+html.dark [data-toc],
+html.dark [data-page] {
+  background: #2a221d;
+}
+
+[data-page] {
+  border-radius: 28px;
+  box-shadow: var(--claude-shadow);
+  backdrop-filter: blur(8px);
+}
+
+[data-page] a {
+  color: var(--claude-accent);
+}
+
+[data-page] a:hover {
+  opacity: 0.82;
+}
+
+[data-page] code,
+[data-page] pre {
+  border-color: var(--claude-border) !important;
+}
+
+[data-page] :not(pre) > code {
+  background: rgba(111, 84, 56, 0.08);
+  color: #7a4028;
+}
+
+html.dark [data-page] :not(pre) > code {
+  background: rgba(208, 137, 97, 0.16);
+  color: #ffd9bf;
+}
+
+[data-page] pre {
+  background: #f4eee4 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+html.dark [data-page] pre {
+  background: #221b17 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+[data-page] blockquote {
+  border-left: 3px solid var(--claude-accent);
+  background: rgba(201, 100, 66, 0.06);
+  color: var(--claude-text-muted);
+}
+
+html.dark [data-page] blockquote {
+  background: rgba(208, 137, 97, 0.1);
+}
+
+[data-page] .border-b {
+  border-color: var(--claude-border) !important;
+}
+
+[data-page] .text-fd-muted-foreground,
+aside .text-fd-muted-foreground,
+header .text-fd-muted-foreground {
+  color: var(--claude-text-muted) !important;
+}
+
+html.dark .text-fd-foreground,
+html.dark .text-fd-primary,
+html.dark [data-page] strong,
+html.dark [data-page] h1,
+html.dark [data-page] h2,
+html.dark [data-page] h3 {
+  color: var(--claude-text) !important;
+}
+
+html.dark .text-fd-muted-foreground,
+html.dark .placeholder\:text-fd-muted-foreground::placeholder,
+html.dark [data-page] .text-fd-muted-foreground,
+html.dark aside .text-fd-muted-foreground,
+html.dark header .text-fd-muted-foreground {
+  color: var(--claude-text-muted) !important;
+}
+
+html.dark .text-fd-accent-foreground,
+html.dark .hover\:text-fd-accent-foreground:hover,
+html.dark .data-\[state\=open\]\:text-fd-accent-foreground[data-state='open'],
+html.dark .data-\[checked\]\:text-fd-accent-foreground[data-checked] {
+  color: #fff3e4 !important;
+}
+
+[data-page] .bg-fd-card,
+aside .bg-fd-card,
+header .bg-fd-card {
+  background: var(--claude-panel) !important;
+}
+
+[data-page] .border-fd-border,
+aside .border-fd-border,
+header .border-fd-border {
+  border-color: var(--claude-border) !important;
 }

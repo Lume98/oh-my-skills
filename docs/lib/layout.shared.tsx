@@ -7,6 +7,9 @@ export function baseOptions(): BaseLayoutProps {
       // JSX supported
       title: appName,
     },
+    themeSwitch: {
+      enabled: true,
+    },
     githubUrl: `https://github.com/${gitConfig.user}/${gitConfig.repo}`,
   };
 }
