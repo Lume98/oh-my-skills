@@ -29,6 +29,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm run skills:sync
       - run: pnpm run docs:build
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/out
