@@ -55,7 +55,12 @@ ${body}
 
   // Generate skills list page + fumadocs meta
   const listItems = skills.map(s => `- [${s.name}](./${s.name}) — ${s.description}`).join('\n')
-  const listPage = `# Skills
+  const listPage = `---
+title: Skills
+description: Claude Code Skills 列表
+---
+
+# Skills
 
 这里收集了所有可用的 Claude Code Skills，每个 Skill 都是一个独立的功能模块。
 
